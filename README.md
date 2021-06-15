@@ -4,7 +4,6 @@
 > June 2021
 > Ubuntu 20.04 LTS
 
-
 ## Particle cli setup (linux)
 
 **use shell install script, not npm!** (javascript always eventually breaks... see dfu- & serial-utils issues)
@@ -34,15 +33,15 @@ is suppposed to fix all my problems along with the `50-particle.rules` *'hack'*.
 We shall see...
 
 
-## Photon os and system flashing procedure
+## Manual photon os and system flashing procedure
 
 **In the event that the dev tools install is successful...**
 
 The procedure for setting up a photon as it would be at the factory setup stage is as follows:
 
 1. Acquire the appropriate device-os binaries from [particle's github](https://github.com/particle-iot/device-os/releases), we need:
-	- photon-1.4.4 -> trolley-v400 testing
-	- photon-2.1.0 -> trolley2-v4xx onwards *(check this later)*
+	- photon-1.4.4
+	- photon-2.1.0
 2. Make sure you get the following binaries for each firmware version:
 	1. `photon-bootloader@1.4.4+lto.bin*`
 	2. `photon-system-part1@1.4.4.bin*`
@@ -57,9 +56,21 @@ The procedure for setting up a photon as it would be at the factory setup stage 
 		```shell
 		particle list
 		```
-	3. If the device is in dfu and visible to the system, use the `particle-cli` tool to flash the device-os to the duf-mode photon with:
+	3. If the device is in **dfu-mode** and visible to the system, use the `particle-cli` tool to flash the device-os to the duf-mode photon with:
+		```shell
+		particle flash --usb <firmware>.bin
+		```
+		**The order in which you flash the os binaries is very important!**
+		1. 	```shell
+			particle flash --usb photon-system-part1@<version>.bin
+			```
+		2. 	```shell
+			particle flash --usb photon-system-part2@<version>.bin
+			```
+		3. 	```shell
+			particle flash --usb photon-tinker@<version>.bin
+			```
+	4. Next, before flashing the bootloader to the photon, we need to the put the device into **serial-mode**. We do this by pressing `RESET/RST` once until the LED is flashing white, then hold `MODE/SETUP` until it flashes blue. The device is now in serial mode and we can flash the bootloader to it using:
 	```shell
-	particle flash --usb firmware-file-xx.bin
+	particle flash --serial photon-bootloader@<version>+lto.bin
 	```
-	**the order in which you flash the os binaries is very important!**
-		1.
