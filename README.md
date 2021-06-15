@@ -60,17 +60,13 @@ The procedure for setting up a photon as it would be at the factory setup stage 
 		```shell
 		particle flash --usb <firmware>.bin
 		```
-		**The order in which you flash the os binaries is very important!**
-		1. 	```shell
-			particle flash --usb photon-system-part1@<version>.bin
-			```
-		2. 	```shell
-			particle flash --usb photon-system-part2@<version>.bin
-			```
-		3. 	```shell
-			particle flash --usb photon-tinker@<version>.bin
-			```
+		**The order in which you flash the os binaries is very important!** Wait for flash success/fail message before proceeding to next flash instruction.
+		```shell
+		particle flash --usb photon-system-part1@<version>.bin
+		particle flash --usb photon-system-part2@<version>.bin
+		particle flash --usb photon-tinker@<version>.bin
+		```
 	4. Next, before flashing the bootloader to the photon, we need to the put the device into **serial-mode**. We do this by pressing `RESET/RST` once until the LED is flashing white, then hold `MODE/SETUP` until it flashes blue. The device is now in serial mode and we can flash the bootloader to it using:
-	```shell
-	particle flash --serial photon-bootloader@<version>+lto.bin
-	```
+		```shell
+		particle flash --serial photon-bootloader@<version>+lto.bin
+		```
