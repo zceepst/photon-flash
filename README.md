@@ -43,10 +43,12 @@ The procedure for setting up a photon as it would be at the factory setup stage 
 	- photon-1.4.4
 	- photon-2.1.0
 2. Make sure you get the following binaries for each firmware version:
-	1. `photon-bootloader@1.4.4+lto.bin*`
-	2. `photon-system-part1@1.4.4.bin*`
-	3. `photon-system-part2@1.4.4.bin*`
-	4. `photon-tinker@1.4.4.bin*`
+	```shell
+	photon-bootloader@1.4.4+lto.bin*
+	photon-system-part1@1.4.4.bin*
+	photon-system-part2@1.4.4.bin*
+	photon-tinker@1.4.4.bin*
+	```
 3. Flash the device-os/firmware to the photon over usb:
 	1. Put photon into DFU mode:
 		1. Press and hold both the `RESET/RST` and `MODE/SETUP` buttons simultaneously
