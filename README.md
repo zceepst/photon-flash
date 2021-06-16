@@ -72,3 +72,18 @@ The procedure for setting up a photon as it would be at the factory setup stage 
 		```shell
 		particle flash --serial photon-bootloader@<version>+lto.bin
 		```
+
+
+## Automating the flashing procedure
+
+**The goal is to streamline the process of setting up a photon by automating as much of the process as possible.**
+
+This includes:
+
+- fetching required device-os binaries on-demand, iff the flashing-system is connected to the internet
+- automatically preforming the device-os flashing sequence, whilst handling edge cases correctly
+- (check this) putting the photon into serial-mode by sending the appropriate signal (this step may need manual input from the technitian on-hand)
+- flash the bootloader over serial
+- flash the chosen system program from local files (maybe from git repo if possible, this would bring the local storage dependencies down to nil which would be ideal)
+- clean the local environment if instructed by the user (remove unnecessary files left-over after process completion)
+
